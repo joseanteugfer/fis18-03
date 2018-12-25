@@ -1,12 +1,12 @@
 const ONE_CONTACT_BODY = [{ name: 'Foo', phone: 777 }]
 
 module.exports = {
-    getContactList: {
-        state: 'it has one contact',
-        uponReceiving: 'a request to retrieve contacts list',
+    getOrdenPagoList: {
+        state: 'it has one orden',
+        uponReceiving: 'a request to retrieve ordenesPago list',
         withRequest: {
             method: 'GET',
-            path: '/api/v1/contacts'
+            path: '/api/v1/ordenesPago'
         },
         willRespondWith: {
             status: 200,

@@ -1,7 +1,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var path = require('path');
-var contactsResource = require('./contactsResource.js');
+var ordenesPagoResource = require('./ordenesPagoResource.js');
 
 var port = (process.env.PORT || 16778);
 var baseAPI = "/api/v1";
@@ -11,10 +11,10 @@ var app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 
-app.get(baseAPI + "/contacts", (req, response) => {
-    console.log("GET /contacts"); 
+app.get(baseAPI + "/ordenesPago", (req, response) => {
+    console.log("GET /ordenesPago"); 
 
-    contactsResource.getAllContacts()
+    ordenesPagoResource.getAllOrdenesPago()
         .then((body) => {
             response.send(body);
         }).catch((error) => {

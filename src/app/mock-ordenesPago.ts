@@ -1,6 +1,6 @@
-import { Contact } from './contact';
+import { OrdenPago } from './orden';
 
-export const CONTACTS: Contact[] = [
+export const ORDENES: OrdenPago[] = [
   { name: 'Mr. Nice', phone: 23432 },
   { name: 'Narco' , phone: 23432},
   { name: 'Bombasto' , phone: 23432},

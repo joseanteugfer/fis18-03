@@ -1,0 +1,22 @@
+<div *ngIf="selectedOrdenPago">
+  {{selectedOrdenPago.name}}
+</div>
+
+<table class="table">
+<thead>
+    <tr>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>&nbsp;</th>
+    </tr>
+</thead>  
+
+<tr>
+    <td><input class="form-control" [(ngModel)]="newOrdenPago.name"></td>
+    <td><input class="form-control" [(ngModel)]="newOrdenPago.phone"></td>
+    <td><button class="btn btn-primary" (click)="addOrdenPago()">Add OrdenPago</button> </td>
+</tr>     
+
+<tr *ngFor="let orden of ordenesPago" app-editable-orden [orden]="orden">
+</tr>    
+</table>

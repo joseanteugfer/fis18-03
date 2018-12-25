@@ -2,13 +2,13 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var path = require('path');
-var Contact = require('./contacts');
+var OrdenPago = require('./ordenesPago');
 var ApiKey = require('./apikeys');
 
 var passport = require('passport');
 var LocalAPIKey = require('passport-localapikey-update').Strategy;
 
-const CONTACTS_APP_DIR = "/dist/contacts-app"; 
+const ORDENES_APP_DIR = "/dist/ordenesPago-app"; 
 var BASE_API_PATH = "/api/v1";
 
 
@@ -32,22 +32,22 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(cors());
 
-app.use(express.static(path.join(__dirname, CONTACTS_APP_DIR))); 
+app.use(express.static(path.join(__dirname, ORDENES_APP_DIR))); 
 app.get('/', function(req, res) { 
-    res.sendFile(path.join(__dirname, CONTACTS_APP_DIR, '/index.html')); 
+    res.sendFile(path.join(__dirname, ORDENES_APP_DIR, '/index.html')); 
 }); 
 
 
-app.get(BASE_API_PATH + "/contacts", 
+app.get(BASE_API_PATH + "/ordenesPago", 
         passport.authenticate('localapikey', {session:false}), 
         (req, res) => {
-            Contact.find((err, contacts) => {
+            OrdenPago.find((err, ordenesPago) => {
                 if (err) {
                     console.error("Error accessing database");
                     res.sendStatus(500);
                 } else {
-                    res.send(contacts.map((contact) => {
-                        return contact.cleanup();
+                    res.send(ordenesPago.map((orden) => {
+                        return orden.cleanup();
                     }));
                 }
             });
@@ -55,11 +55,11 @@ app.get(BASE_API_PATH + "/contacts",
 );
 
 
-app.post(BASE_API_PATH + "/contacts", (req, res) => {
-    // Create a new contact
-    console.log(Date()+" - POST /contacts");
-    var contact = req.body;
-    Contact.create(contact, (err) => {
+app.post(BASE_API_PATH + "/ordenesPago", (req, res) => {
+    // Create a new orden
+    console.log(Date()+" - POST /ordenesPago");
+    var orden = req.body;
+    OrdenPago.create(orden, (err) => {
         if (err) {
             console.error(err);
             res.sendStatus(500);
@@ -69,54 +69,54 @@ app.post(BASE_API_PATH + "/contacts", (req, res) => {
     });
 });
 
-app.put(BASE_API_PATH + "/contacts", (req, res) => {
+app.put(BASE_API_PATH + "/ordenesPago", (req, res) => {
     // Forbidden
-    console.log(Date()+" - PUT /contacts");
+    console.log(Date()+" - PUT /ordenesPago");
     res.sendStatus(405);
 });
 
-app.delete(BASE_API_PATH + "/contacts", (req, res) => {
-    // Remove all contacts
-    console.log(Date()+" - DELETE /contacts");
+app.delete(BASE_API_PATH + "/ordenesPago", (req, res) => {
+    // Remove all ordenesPago
+    console.log(Date()+" - DELETE /ordenesPago");
     db.remove({});    
     res.sendStatus(200);
 });
 
 
-app.post(BASE_API_PATH + "/contacts/:name", (req, res) => {
+app.post(BASE_API_PATH + "/ordenesPago/:name", (req, res) => {
     // Forbidden
-    console.log(Date()+" - POST /contacts");
+    console.log(Date()+" - POST /ordenesPago");
     res.sendStatus(405);
 });
 
 
 
-app.get(BASE_API_PATH + "/contacts/:name", (req, res) => {
-    // Get a single contact
+app.get(BASE_API_PATH + "/ordenesPago/:name", (req, res) => {
+    // Get a single orden
     var name = req.params.name;
-    console.log(Date()+" - GET /contacts/"+name);
+    console.log(Date()+" - GET /ordenesPago/"+name);
 
-    db.find({"name": name},(err,contacts)=>{
+    db.find({"name": name},(err,ordenesPago)=>{
         if(err){
             console.error("Error accesing DB");
             res.sendStatus(500);
         }else{
-            if(contacts.length>1){
+            if(ordenesPago.length>1){
                 console.warn("Incosistent DB: duplicated name");
             }
-            res.send(contacts.map((contact)=>{
-                delete contact._id;
-                return contact;
+            res.send(ordenesPago.map((orden)=>{
+                delete orden._id;
+                return orden;
             })[0]);
         }
     });
 });
 
 
-app.delete(BASE_API_PATH + "/contacts/:name", (req, res) => {
-    // Delete a single contact
+app.delete(BASE_API_PATH + "/ordenesPago/:name", (req, res) => {
+    // Delete a single orden
     var name = req.params.name;
-    console.log(Date()+" - DELETE /contacts/"+name);
+    console.log(Date()+" - DELETE /ordenesPago/"+name);
 
     db.remove({"name": name},{},(err,numRemoved)=>{
         if(err){
@@ -133,10 +133,10 @@ app.delete(BASE_API_PATH + "/contacts/:name", (req, res) => {
         }
     });
 });
-app.delete(BASE_API_PATH + "/contacts/:name", (req, res) => {
-    // Delete a single contact
+app.delete(BASE_API_PATH + "/ordenesPago/:name", (req, res) => {
+    // Delete a single orden
     var name = req.params.name;
-    console.log(Date()+" - DELETE /contacts/"+name);
+    console.log(Date()+" - DELETE /ordenesPago/"+name);
 
     db.remove({"name": name},{},(err,numRemoved)=>{
         if(err){
@@ -154,18 +154,18 @@ app.delete(BASE_API_PATH + "/contacts/:name", (req, res) => {
     });
 });
 
-app.put(BASE_API_PATH + "/contacts/:name", (req, res) => {
-    // Update contact
+app.put(BASE_API_PATH + "/ordenesPago/:name", (req, res) => {
+    // Update orden
     var name = req.params.name;
-    var updatedContact = req.body;
-    console.log(Date()+" - PUT /contacts/"+name);
+    var updatedOrdenPago = req.body;
+    console.log(Date()+" - PUT /ordenesPago/"+name);
 
-    if(name != updatedContact.name){
+    if(name != updatedOrdenPago.name){
         res.sendStatus(409);
         return;
     }
 
-    db.update({"name": name},updatedContact,(err,numUpdated)=>{
+    db.update({"name": name},updatedOrdenPago,(err,numUpdated)=>{
         if(err){
             console.error("Error accesing DB");
             res.sendStatus(500);

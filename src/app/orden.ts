@@ -1,4 +1,4 @@
-export class Contact {
+export class OrdenPago {
     name: string;
     phone: number;
 }
