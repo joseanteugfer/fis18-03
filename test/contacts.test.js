@@ -1,10 +1,10 @@
 var chai = require('chai');
 var mongoose = require('mongoose');
-var Contact = require('../contacts');
+var OrdenPago = require('../ordenesPago');
 var expect = chai.expect;
 
 
-describe('Contact DB connection', () => {
+describe('OrdenPago DB connection', () => {
 
     before((done) => {
         var dbUrl = (process.env.DB || 'mongodb://localhost/test');
@@ -18,17 +18,17 @@ describe('Contact DB connection', () => {
     });
 
     beforeEach((done) => {
-        Contact.deleteMany({}, (err) => {
+        OrdenPago.deleteMany({}, (err) => {
             done();
         });
     });
 
-    it('writes a contact in the DB', (done) => {
-        var contact = new Contact({name: "pepe", phone: 888});
-        contact.save((err, contact) => {
+    it('writes a orden in the DB', (done) => {
+        var orden = new OrdenPago({name: "pepe", phone: 888});
+        orden.save((err, orden) => {
             expect(err).is.null;
-            Contact.find({}, (err, contacts) => {
-                expect(contacts).to.have.lengthOf(1);
+            OrdenPago.find({}, (err, ordenesPago) => {
+                expect(ordenesPago).to.have.lengthOf(1);
                 // More "expects" could be done
                 done();
             });

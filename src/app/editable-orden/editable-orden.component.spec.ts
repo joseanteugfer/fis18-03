@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditableContactComponent } from './editable-contact.component';
+import { EditableOrdenPagoComponent } from './editable-orden.component';
 
-describe('EditableContactComponent', () => {
-  let component: EditableContactComponent;
-  let fixture: ComponentFixture<EditableContactComponent>;
+describe('EditableOrdenPagoComponent', () => {
+  let component: EditableOrdenPagoComponent;
+  let fixture: ComponentFixture<EditableOrdenPagoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditableContactComponent ]
+      declarations: [ EditableOrdenPagoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditableContactComponent);
+    fixture = TestBed.createComponent(EditableOrdenPagoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
