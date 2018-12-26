@@ -9,12 +9,12 @@ import { Observable } from 'rxjs';
 })
 export class OrdenPagoService {
 
-  serverUrl = "/api/v1";
+  serverUrl = '/api/v1';
 
   constructor(private httpClient: HttpClient) { }
 
   getOrdenesPago(): Observable<OrdenPago[]> {
-    const url = this.serverUrl + "/ordenesPago";
-    return this.httpClient.get<OrdenPago[]>(url);    
+    const url = this.serverUrl;
+    return this.httpClient.get<OrdenPago[]>(url);
   }
 }

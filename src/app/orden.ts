@@ -1,4 +1,9 @@
 export class OrdenPago {
-    name: string;
-    phone: number;
+    idproyecto: String;
+    idfactura: String;
+    idcomservicios: String;
+    concepto: String;
+    cantidad: number;
+    beneficiario: string;
+    iban: string;
 }

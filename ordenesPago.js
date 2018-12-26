@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
 
 var ordenSchema = new mongoose.Schema({
-    idProyecto: String,
-    idFactura: String,
-    idComServicios: String,
+    idproyecto: String,
+    idfactura: String,
+    idcomservicios: String,
     concepto: String,
     cantidad: number,
     beneficiario: string,
@@ -12,9 +12,9 @@ var ordenSchema = new mongoose.Schema({
 
 ordenSchema.methods.cleanup = function() {
     return {
-        idProyecto: this.idProyecto,
-        idFactura: this.idFactura,
-        idComServicios: this.idComServicios,
+        idproyecto: this.idproyecto,
+        idfactura: this.idfactura,
+        idcomservicios: this.idcomservicios,
         concepto: this.concepto,
         cantidad: this.cantidad,
         beneficiario: this.beneficiario,
