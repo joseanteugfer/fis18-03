@@ -12,8 +12,13 @@ export class OrdenesPagoComponent implements OnInit {
   ordenesPago: OrdenPago[];
   selectedOrdenPago: OrdenPago;
   newOrdenPago: OrdenPago = {
-    name: null,
-    phone: null
+    idproyecto: null,
+    idfactura: null,
+    idcomservicios: null,
+    concepto: null,
+    cantidad: null,
+    beneficiario: null,
+    iban: null
   };
 
   constructor(private ordenService: OrdenPagoService) { }
@@ -21,9 +26,14 @@ export class OrdenesPagoComponent implements OnInit {
   addOrdenPago() {
     this.ordenesPago.push(this.newOrdenPago);
     this.newOrdenPago = {
-      name: null,
-      phone: null
-    }
+      idproyecto: null,
+      idfactura: null,
+      idcomservicios: null,
+      concepto: null,
+      cantidad: null,
+      beneficiario: null,
+      iban: null
+    };
   }
 
   getOrdenesPago() {
