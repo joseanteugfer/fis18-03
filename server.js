@@ -8,7 +8,7 @@ var ApiKey = require('./apikeys');
 var passport = require('passport');
 var LocalAPIKey = require('passport-localapikey-update').Strategy;
 
-const ORDENES_APP_DIR = "/dist/ordenesPago-app";
+const ORDENES_APP_DIR = "/dist/FIS18-03";
 var BASE_API_PATH = "/api/v1";
 
 
