@@ -1,5 +1,17 @@
 <td *ngIf="!editable">{{orden.name}}</td>
 <td *ngIf="!editable">{{orden.phone}}</td>
-<td *ngIf="editable"><input class="form-control" [(ngModel)]="orden.name"/></td>
-<td *ngIf="editable"><input class="form-control" [(ngModel)]="orden.phone"/></td>
-<td><button class="btn" (click)="onEdit()">{{editable ? 'Save': 'Edit'}}</button></td>
+<td *ngIf="!editable">{{orden.idproyecto}}</td>
+<td *ngIf="!editable">{{orden.idfactura}}</td>
+<td *ngIf="!editable">{{orden.idcomservicios}}</td>
+<td *ngIf="!editable">{{orden.concepto}}</td>
+<td *ngIf="!editable">{{orden.cantidad}}</td>
+<td *ngIf="!editable">{{orden.beneficiario}}</td>
+<td *ngIf="!editable">{{orden.iban}}</td>
+<td *ngIf="editable"><input class="form-control" [(ngModel)]="newOrdenPago.idproyecto"></td>
+<td *ngIf="editable"><input class="form-control" [(ngModel)]="newOrdenPago.idfactura"></td>
+<td *ngIf="editable"><input class="form-control" [(ngModel)]="newOrdenPago.idcomservicios"></td>
+<td *ngIf="editable"><input class="form-control" [(ngModel)]="newOrdenPago.concepto"></td>
+<td *ngIf="editable"><input class="form-control" [(ngModel)]="newOrdenPago.cantidad"></td>
+<td *ngIf="editable"><input class="form-control" [(ngModel)]="newOrdenPago.beneficiario"></td>
+<td *ngIf="editable"><input class="form-control" [(ngModel)]="newOrdenPago.iban"></td>
+<td *ngIf="editable"><button class="btn" (click)="onEdit()">{{editable ? 'Save': 'Edit'}}</button></td>
