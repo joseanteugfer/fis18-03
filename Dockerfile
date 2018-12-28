@@ -8,7 +8,6 @@ COPY package-lock.json .
 RUN npm install
 
 COPY index.js .
-COPY ordenesPago.json .
 COPY dist dist
 
 #RUN ng build --prod
