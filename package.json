@@ -30,7 +30,7 @@
         "cors": "^2.8.5",
         "express": "^4.16.4",
         "hystrixjs": "^0.2.0",
-        "mongoose": "^5.3.14",
+        "mongoose": "^5.4.1",
         "nedb": "^1.8.0",
         "pact": "^4.3.2",
         "passport": "^0.4.0",

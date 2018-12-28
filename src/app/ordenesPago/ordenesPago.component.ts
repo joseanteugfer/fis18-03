@@ -35,8 +35,8 @@ export class OrdenesPagoComponent implements OnInit {
         cantidad: null,
         beneficiario: null,
         iban: null
-      }; 
-    }); 
+      };
+    });
   }
 
   getOrdenesPago() {

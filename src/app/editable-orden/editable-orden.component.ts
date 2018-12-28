@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { OrdenPago } from '../orden'
+import { OrdenPago } from '../orden';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: '[app-editable-orden]',
   templateUrl: './editable-orden.component.html',
   styleUrls: ['./editable-orden.component.css']
