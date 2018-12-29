@@ -39,8 +39,10 @@ app.get('/', function(req, res) {
 
 
 app.get(BASE_API_PATH + "/ordenesPago",
-    passport.authenticate('localapikey', { session: false }),
+    //passport.authenticate('localapikey', { session: false }),
     (req, res) => {
+        console.log(Date() + " - GET /ordenesPago");   
+
         OrdenPago.find((err, ordenesPago) => {
             if (err) {
                 console.error("Error accessing database");
@@ -54,12 +56,12 @@ app.get(BASE_API_PATH + "/ordenesPago",
     }
 );
 
-app.get(BASE_API_PATH + "/ordenPago/:idProyecto", (req, res) => {
+app.get(BASE_API_PATH + "/ordenPago/:idproyecto", (req, res) => {
     // Get orden desde Proyecto
-    var name = req.params.idfactura;
+    var name = req.params.idproyecto;
     console.log(Date() + " - GET /ordenPago/" + name);
 
-    db.find({ "idProyecto": name }, (err, ordenPago) => {
+    db.find({ "idproyecto": name }, (err, ordenPago) => {
         if (err) {
             console.error("Error accesing DB");
             res.sendStatus(500);
