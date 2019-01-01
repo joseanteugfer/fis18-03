@@ -41,7 +41,7 @@ app.get('/', function(req, res) {
 app.get(BASE_API_PATH + "/ordenesPago",
     //passport.authenticate('localapikey', { session: false }),
     (req, res) => {
-        console.log(Date() + " - GET /ordenesPago");   
+        console.log(Date() + " - GET /ordenesPago");
 
         OrdenPago.find((err, ordenesPago) => {
             if (err) {
@@ -67,8 +67,7 @@ app.get(BASE_API_PATH + "/ordenPago/:idproyecto", (req, res) => {
             res.sendStatus(500);
         } else {
             res.send(ordenPago.map((orden) => {
-                delete orden._id;
-                return orden;
+                return orden.cleanup();
             })[0]);
         }
     });
@@ -88,8 +87,7 @@ app.get(BASE_API_PATH + "/ordenPago/:idfactura", (req, res) => {
                 console.warn("Incosistent DB: duplicated name");
             }
             res.send(ordenPago.map((orden) => {
-                delete orden._id;
-                return orden;
+                return orden.cleanup();
             })[0]);
         }
     });
@@ -100,7 +98,7 @@ app.get(BASE_API_PATH + "/ordenPago/:idcomision", (req, res) => {
     var name = req.params.idcomision;
     console.log(Date() + " - GET /ordenPago/" + name);
 
-    db.find({ "idcomservicio": name }, (err, ordenPago) => {
+    db.find({ "idcomservicios": name }, (err, ordenPago) => {
         if (err) {
             console.error("Error accesing DB");
             res.sendStatus(500);
@@ -109,8 +107,7 @@ app.get(BASE_API_PATH + "/ordenPago/:idcomision", (req, res) => {
                 console.warn("Incosistent DB: duplicated name");
             }
             res.send(ordenPago.map((orden) => {
-                delete orden._id;
-                return orden;
+                return orden.cleanup();
             })[0]);
         }
     });
