@@ -12,4 +12,4 @@
 <td *ngIf="editable"><input class="form-control" [(ngModel)]="orden.cantidad"></td>
 <td *ngIf="editable"><input class="form-control" [(ngModel)]="orden.beneficiario"></td>
 <td *ngIf="editable"><input class="form-control" [(ngModel)]="orden.iban"></td>
-<td *ngIf="editable"><button class="btn" (click)="onEdit()">{{editable ? 'Save': 'Edit'}}</button></td>
+<td><button class="btn" (click)="onEdit()">{{editable ? 'Save': 'Edit'}}</button></td>
