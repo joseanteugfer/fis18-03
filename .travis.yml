@@ -11,7 +11,7 @@ before_install:
 
 install:
   # Tell npm to ignore package-lock.json to avoid making local file
-  # changes that would dirty the git workspace.
+  # changes that would dirty the git workspace
   - npm config set package-lock false
   - npm install
   - npm install -g @angular/cli
