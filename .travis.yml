@@ -10,6 +10,9 @@ before_install:
   - wget -qO- https://toolbelt.heroku.com/install.sh | sh
 
 install:
+  # Tell npm to ignore package-lock.json to avoid making local file
+  # changes that would dirty the git workspace.
+  - npm config set package-lock false
   - npm install
   - npm install -g @angular/cli
 
