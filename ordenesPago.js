@@ -5,9 +5,9 @@ var ordenSchema = new mongoose.Schema({
     idfactura: String,
     idcomservicios: String,
     concepto: String,
-    cantidad: number,
-    beneficiario: string,
-    iban: string
+    cantidad: Number,
+    beneficiario: String,
+    iban: String
 });
 
 ordenSchema.methods.cleanup = function() {

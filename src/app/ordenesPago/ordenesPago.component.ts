@@ -23,17 +23,20 @@ export class OrdenesPagoComponent implements OnInit {
 
   constructor(private ordenService: OrdenPagoService) { }
 
-  addOrdenPago() {
-    this.ordenesPago.push(this.newOrdenPago);
-    this.newOrdenPago = {
-      idproyecto: null,
-      idfactura: null,
-      idcomservicios: null,
-      concepto: null,
-      cantidad: null,
-      beneficiario: null,
-      iban: null
-    }
+ addOrdenPago() {
+    this.ordenService.addOrdenPago(this.newOrdenPago)
+    .subscribe(() => {
+      this.ordenesPago.push(this.newOrdenPago);
+      this.newOrdenPago = {
+        idproyecto: null,
+        idfactura: null,
+        idcomservicios: null,
+        concepto: null,
+        cantidad: null,
+        beneficiario: null,
+        iban: null
+      };
+    });
   }
 
   getOrdenesPago() {
@@ -44,6 +47,7 @@ export class OrdenesPagoComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('OnInit')
     this.getOrdenesPago();
   }
 

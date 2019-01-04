@@ -10,6 +10,9 @@ before_install:
   - wget -qO- https://toolbelt.heroku.com/install.sh | sh
 
 install:
+  # Tell npm to ignore package-lock.json to avoid making local file
+  # changes that would dirty the git workspace
+  - npm config set package-lock false
   - npm install
   - npm install -g @angular/cli
 
@@ -17,7 +20,9 @@ script:
   - ng build --prod --aot
   - npm test
   # build docker images
-  - docker build -t ordenesPago .
+  - docker build -t ordenespago .
+
+
 
 deploy:
   provider: script
@@ -27,4 +32,5 @@ deploy:
     heroku container:login;
     heroku container:push web -a $HEROKU_APP_NAME;
     heroku container:release web -a $HEROKU_APP_NAME;
-  branch: master
+  on:
+    branch: deploy
