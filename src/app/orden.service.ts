@@ -70,15 +70,15 @@ private handleError<T> (operation = 'operation', result?: T) {
       );
   }
 
-  deleteOrdenPago(orden: OrdenPago, key: string): Observable<any> {
+  deleteOrdenPago(orden: OrdenPago): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    var idfactura = orden.idfactura;
-    const url = `${this.serverUrl}/ordenesPago/idfactura/`+idfactura+`?apikey=`+ key;
+    let idfactura = orden.idfactura;
+    const url = `${this.serverUrl}/ordenesPago/idfactura/`+idfactura;
     return this.httpClient.delete(url, {responseType: 'text', headers: headers})
-      .pipe(
-          tap(() => this.log(`delete orden id =${orden.idfactura}`)),
-          catchError(this.handleError('deleteOrdenPago', []))
-      );
-  }
+    .pipe(
+        tap(() => this.log(`delete orden id =${orden.idfactura}`)),
+        catchError(this.handleError('deleteOrdenPago', []))
+    );
+}
 
 }

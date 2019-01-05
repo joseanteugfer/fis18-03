@@ -43,6 +43,6 @@
         <td><button class="btn btn-primary" (click)="addOrdenPago()">Add OrdenPago</button> </td>
     </tr>
 
-    <tr *ngFor="let orden of ordenesPago" app-editable-orden [orden]="orden">
+    <tr *ngFor="let orden of ordenesPago" app-editable-orden [orden]="orden" [key]="key" [ordenesPago]="ordenesPago">
     </tr>
 </table>

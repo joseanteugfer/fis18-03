@@ -12,6 +12,9 @@ import { OrdenPagoService } from '../orden.service';
 export class EditableOrdenPagoComponent implements OnInit {
 
   @Input('orden') orden: OrdenPago;
+  @Input('key') key: string;
+  @Input('ordenesPago') ordenesPago: OrdenPago[];
+
  
 
 
@@ -30,9 +33,14 @@ export class EditableOrdenPagoComponent implements OnInit {
 
   }
 
-  onDelete(orden: OrdenPago) {
-    this.editable = ! this.editable;
-
+  onDelete() {
+    this.ordenService.deleteOrdenPago(this.orden)
+    .subscribe(() => {
+      this.ordenService.getOrdenesPago(this.key)
+        .subscribe((ordenesPago) => {
+          this.ordenesPago = ordenesPago;
+        });
+    });;
   }
 
   ngOnInit() {
