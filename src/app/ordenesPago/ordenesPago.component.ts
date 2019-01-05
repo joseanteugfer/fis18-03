@@ -20,13 +20,14 @@ export class OrdenesPagoComponent implements OnInit {
     concepto: null,
     cantidad: null,
     beneficiario: null,
-    iban: null
+    iban: null,
+    estado: 'ACEPTADO'
   };
 
   constructor(private ordenService: OrdenPagoService) { }
 
  addOrdenPago() {
-    this.ordenService.addOrdenPago(this.newOrdenPago)
+    this.ordenService.addOrdenPago(this.newOrdenPago, this.key)
     .subscribe(() => {
       this.ordenesPago.push(this.newOrdenPago);
       this.newOrdenPago = {
@@ -36,11 +37,13 @@ export class OrdenesPagoComponent implements OnInit {
         concepto: null,
         cantidad: null,
         beneficiario: null,
-        iban: null
+        iban: null,
+        estado: 'ACEPTADO'
       };
     });
     this.getOrdenesPago();
   }
+
 
   getOrdenesPago() {
     this.ordenService.getOrdenesPago(this.key)
@@ -48,6 +51,7 @@ export class OrdenesPagoComponent implements OnInit {
         this.ordenesPago = ordenesPago;
       });
   }
+
 
   validateKey() {
     this.mostrarApiKey = !this.mostrarApiKey;
@@ -57,6 +61,13 @@ export class OrdenesPagoComponent implements OnInit {
   IntroduceApiKey() {
     this.mostrarApiKey = !this.mostrarApiKey;
   }
+
+
+  recibeActualizacionEditableOrden($event) {
+    if($event == 'actualiza')
+    this.getOrdenesPago();
+  }
+
 
   ngOnInit() {
   }

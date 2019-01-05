@@ -10,6 +10,7 @@ export const ORDENES: OrdenPago[] = [
     concepto: 'test',
     cantidad: 12,
     beneficiario: 'Molina',
-    iban: '6354637282736453637282'
+    iban: '6354637282736453637282',
+    estado: 'ACEPTADO'
 }
 ];

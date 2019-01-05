@@ -7,7 +7,8 @@ var ordenSchema = new mongoose.Schema({
     concepto: String,
     cantidad: Number,
     beneficiario: String,
-    iban: String
+    iban: String,
+    estado: String
 });
 
 ordenSchema.methods.cleanup = function() {
@@ -18,7 +19,8 @@ ordenSchema.methods.cleanup = function() {
         concepto: this.concepto,
         cantidad: this.cantidad,
         beneficiario: this.beneficiario,
-        iban: this.iban
+        iban: this.iban,
+        estado: this.estado
     };
 }
 

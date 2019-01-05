@@ -27,21 +27,23 @@
             <th>cantidad</th>
             <th>beneficiario</th>
             <th>iban</th>
+            <th>estado</th>
             <th>&nbsp;</th>
         </tr>
     </thead>
 
     <tr>
-        <td><input class="form-control" [(ngModel)]="newOrdenPago.idproyecto"></td>
-        <td><input class="form-control" [(ngModel)]="newOrdenPago.idfactura"></td>
-        <td><input class="form-control" [(ngModel)]="newOrdenPago.idcomservicios"></td>
-        <td><input class="form-control" [(ngModel)]="newOrdenPago.concepto"></td>
-        <td><input class="form-control" [(ngModel)]="newOrdenPago.cantidad"></td>
-        <td><input class="form-control" [(ngModel)]="newOrdenPago.beneficiario"></td>
-        <td><input class="form-control" [(ngModel)]="newOrdenPago.iban"></td>
+        <td><input class="form-control" [(ngModel)]="newOrdenPago.idproyecto" required></td>
+        <td><input class="form-control" [(ngModel)]="newOrdenPago.idfactura" required></td>
+        <td><input class="form-control" [(ngModel)]="newOrdenPago.idcomservicios" required></td>
+        <td><input class="form-control" [(ngModel)]="newOrdenPago.concepto" required></td>
+        <td><input type="number" min="0" class="form-control" [(ngModel)]="newOrdenPago.cantidad" required></td>
+        <td><input class="form-control" [(ngModel)]="newOrdenPago.beneficiario" required></td>
+        <td><input class="form-control" type="number" [(ngModel)]="newOrdenPago.iban" required></td>
+        <td><input class="form-control" [(ngModel)]="newOrdenPago.estado" readonly></td>
         <td><button class="btn btn-primary" (click)="addOrdenPago()">Add OrdenPago</button> </td>
     </tr>
 
-    <tr *ngFor="let orden of ordenesPago" app-editable-orden [orden]="orden">
+    <tr *ngFor="let orden of ordenesPago" app-editable-orden (actualizaOrdenes)="recibeActualizacionEditableOrden($event)" [orden]="orden" [key]="key">
     </tr>
 </table>
