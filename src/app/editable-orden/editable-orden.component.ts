@@ -24,7 +24,7 @@ export class EditableOrdenPagoComponent implements OnInit {
 
   constructor(private ordenService: OrdenPagoService) { }
 
-
+  //editamos una orden de pago y avisamos al componente padre para que actualice el front-end haciendo una llamada a getOrdenesPago
   onEdit() {
     this.editable = !this.editable;
     if (this.editable === false) {
@@ -36,6 +36,7 @@ export class EditableOrdenPagoComponent implements OnInit {
 
   }
 
+  //eliminamos una orden de pago y avisamos al componente padre para que actualice el front-end haciendo una llamada a getOrdenesPago
   onDelete() {
     this.ordenService.deleteOrdenPago(this.orden, this.key)
     .subscribe(() => {
