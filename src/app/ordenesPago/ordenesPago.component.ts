@@ -59,7 +59,6 @@ export class OrdenesPagoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getOrdenesPago();
   }
 
 }
