@@ -9,6 +9,8 @@ import { OrdenPagoService } from '../orden.service';
 })
 export class OrdenesPagoComponent implements OnInit {
 
+  key: string;
+  mostrarApiKey = true;
   ordenesPago: OrdenPago[];
   selectedOrdenPago: OrdenPago;
   newOrdenPago: OrdenPago = {
@@ -39,18 +41,27 @@ export class OrdenesPagoComponent implements OnInit {
         estado: 'ACEPTADO'
       };
     });
+    this.getOrdenesPago();
   }
 
-  getOrdenesPago() {
-    this.ordenService.getOrdenesPago()
+  public getOrdenesPago() {
+    this.ordenService.getOrdenesPago(this.key)
       .subscribe((ordenesPago) => {
         this.ordenesPago = ordenesPago;
       });
   }
 
-  ngOnInit() {
-    console.log('OnInit');
+
+  validateKey() {
+    this.mostrarApiKey = !this.mostrarApiKey;
     this.getOrdenesPago();
+  }
+
+  IntroduceApiKey() {
+    this.mostrarApiKey = !this.mostrarApiKey;
+  }
+
+  ngOnInit() {
   }
 
 }

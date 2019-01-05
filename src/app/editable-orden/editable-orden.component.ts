@@ -11,8 +11,13 @@ import { OrdenPagoService } from '../orden.service';
 })
 export class EditableOrdenPagoComponent implements OnInit {
 
-  @Input() orden: OrdenPago;
+  @Input('orden') orden: OrdenPago;
+ 
+
+
+
   editable = false;
+
 
   constructor(private ordenService: OrdenPagoService) { }
 
@@ -25,8 +30,9 @@ export class EditableOrdenPagoComponent implements OnInit {
 
   }
 
-  onDelete() {
+  onDelete(orden: OrdenPago) {
     this.editable = ! this.editable;
+
   }
 
   ngOnInit() {
