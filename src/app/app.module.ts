@@ -11,7 +11,8 @@ import { EditableOrdenPagoComponent } from './editable-orden/editable-orden.comp
   declarations: [
     AppComponent,
     OrdenesPagoComponent,
-    EditableOrdenPagoComponent
+    EditableOrdenPagoComponent,
+    
   ],
   imports: [
     BrowserModule,

@@ -52,7 +52,9 @@ private handleError<T> (operation = 'operation', result?: T) {
 
   addOrdenPago(orden: OrdenPago, key: string): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
     const url = `${this.serverUrl}/ordenesPago/?apikey=`+ key;
+
     return this.httpClient.post(url, orden, {responseType: 'text', headers: headers})
       .pipe(
           tap(() => this.log(`add orden id =${orden.idfactura}`)),

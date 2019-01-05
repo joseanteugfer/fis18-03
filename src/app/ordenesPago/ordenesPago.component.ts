@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { OrdenPago } from '../orden';
 import { OrdenPagoService } from '../orden.service';
 
@@ -44,7 +44,8 @@ export class OrdenesPagoComponent implements OnInit {
     this.getOrdenesPago();
   }
 
-  public getOrdenesPago() {
+
+  getOrdenesPago() {
     this.ordenService.getOrdenesPago(this.key)
       .subscribe((ordenesPago) => {
         this.ordenesPago = ordenesPago;
@@ -61,10 +62,12 @@ export class OrdenesPagoComponent implements OnInit {
     this.mostrarApiKey = !this.mostrarApiKey;
   }
 
+
   recibeActualizacionEditableOrden($event) {
     if($event == 'actualiza')
     this.getOrdenesPago();
   }
+
 
   ngOnInit() {
   }
