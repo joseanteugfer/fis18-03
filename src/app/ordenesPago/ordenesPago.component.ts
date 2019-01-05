@@ -18,7 +18,8 @@ export class OrdenesPagoComponent implements OnInit {
     concepto: null,
     cantidad: null,
     beneficiario: null,
-    iban: null
+    iban: null,
+    estado: 'ACEPTADO'
   };
 
   constructor(private ordenService: OrdenPagoService) { }
@@ -34,7 +35,8 @@ export class OrdenesPagoComponent implements OnInit {
         concepto: null,
         cantidad: null,
         beneficiario: null,
-        iban: null
+        iban: null,
+        estado: 'ACEPTADO'
       };
     });
   }
@@ -47,7 +49,7 @@ export class OrdenesPagoComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('OnInit')
+    console.log('OnInit');
     this.getOrdenesPago();
   }
 

@@ -45,6 +45,12 @@ private handleError<T> (operation = 'operation', result?: T) {
     return this.httpClient.get<OrdenPago[]>(url);
   }
 
+
+  getOrdenesPagoProyecto(): Observable<OrdenPago> {
+    const url = `${this.serverUrl}/ordenPago/:idproyecto`;
+    return this.httpClient.get<OrdenPago>(url);
+  }
+
   addOrdenPago(orden: OrdenPago): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const url = `${this.serverUrl}/ordenesPago`;
@@ -54,4 +60,15 @@ private handleError<T> (operation = 'operation', result?: T) {
           catchError(this.handleError('addOrdenPago', []))
       );
   }
+
+  editOrdenPago(orden: OrdenPago): Observable<any> {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const url = `${this.serverUrl}/ordenesPago`;
+    return this.httpClient.put(url, orden, {responseType: 'text', headers: headers})
+      .pipe(
+          tap(() => this.log(`edit orden id =${orden.idfactura}`)),
+          catchError(this.handleError('addOrdenPago', []))
+      );
+  }
+
 }

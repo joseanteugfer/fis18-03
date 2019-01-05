@@ -6,4 +6,5 @@ export class OrdenPago {
     cantidad: number;
     beneficiario: string;
     iban: string;
+    estado: string;
 }

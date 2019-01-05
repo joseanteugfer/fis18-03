@@ -38,6 +38,23 @@ app.get('/', function(req, res) {
 });
 
 
+app.delete(BASE_API_PATH + "/ordenesPago",
+    //passport.authenticate('localapikey', { session: false }),
+    (req, res) => {
+        console.log(Date() + " - DELETE /ordenesPago");
+
+        OrdenPago.delete((err, ordenesPago) => {
+            if (err) {
+                console.error("Error accessing database");
+                res.sendStatus(500);
+            }
+        });
+
+    }
+);
+
+
+
 app.get(BASE_API_PATH + "/ordenesPago",
     //passport.authenticate('localapikey', { session: false }),
     (req, res) => {
@@ -48,70 +65,80 @@ app.get(BASE_API_PATH + "/ordenesPago",
                 console.error("Error accessing database");
                 res.sendStatus(500);
             } else {
-                res.send(ordenesPago.map((orden) => {
-                    return orden.cleanup();
-                }));
+                if (ordenesPago.length == 0) {
+                    res.sendStatus(404);
+                } else {
+                    res.send(ordenesPago.map((orden) => {
+                        return orden.cleanup();
+                    }));
+                }
             }
         });
     }
 );
 
-app.get(BASE_API_PATH + "/ordenPago/:idproyecto", (req, res) => {
-    // Get orden desde Proyecto
-    var name = req.params.idproyecto;
-    console.log(Date() + " - GET /ordenPago/" + name);
+app.get(BASE_API_PATH + "/ordenesPago/idproyecto/:idproyecto",
+    (req, res) => {
+        // Get orden desde Proyecto
+        var name = req.params.idproyecto;
+        console.log(Date() + " - GET /ordenesPago/idproyecto" + name);
 
-    db.find({ "idproyecto": name }, (err, ordenPago) => {
-        if (err) {
-            console.error("Error accesing DB");
-            res.sendStatus(500);
-        } else {
-            res.send(ordenPago.map((orden) => {
-                return orden.cleanup();
-            })[0]);
-        }
-    });
-});
-
-app.get(BASE_API_PATH + "/ordenPago/:idfactura", (req, res) => {
-    // Get a single orden desde Factura
-    var name = req.params.idfactura;
-    console.log(Date() + " - GET /ordenPago/" + name);
-
-    db.find({ "idfactura": name }, (err, ordenPago) => {
-        if (err) {
-            console.error("Error accesing DB");
-            res.sendStatus(500);
-        } else {
-            if (ordenPago.length > 1) {
-                console.warn("Incosistent DB: duplicated name");
+        OrdenPago.find({ "idproyecto": name }, (err, ordenPago) => {
+            if (err) {
+                console.error("Error accesing DB");
+                res.sendStatus(500);
+            } else {
+                if (ordenPago.length == 0) {
+                    res.sendStatus(404);
+                } else {
+                    return res.send(ordenPago[0].cleanup());
+                    //return orden.cleanup();
+                }
             }
-            res.send(ordenPago.map((orden) => {
-                return orden.cleanup();
-            })[0]);
-        }
+        });
     });
-});
 
-app.get(BASE_API_PATH + "/ordenPago/:idcomision", (req, res) => {
-    // Get a single orden desde Comsiiones de servicios
-    var name = req.params.idcomision;
-    console.log(Date() + " - GET /ordenPago/" + name);
+app.get(BASE_API_PATH + "/ordenesPago/idfactura/:idfactura",
+    (req, res) => {
+        // Get orden desde Proyecto
+        var name = req.params.idfactura;
+        console.log(Date() + " - GET /ordenesPago/idfactura" + name);
 
-    db.find({ "idcomservicios": name }, (err, ordenPago) => {
-        if (err) {
-            console.error("Error accesing DB");
-            res.sendStatus(500);
-        } else {
-            if (ordenPago.length > 1) {
-                console.warn("Incosistent DB: duplicated name");
+        OrdenPago.find({ "idfactura": name }, (err, ordenPago) => {
+            if (err) {
+                console.error("Error accesing DB");
+                res.sendStatus(500);
+            } else {
+                if (ordenPago.length == 0) {
+                    res.sendStatus(404);
+                } else {
+                    return res.send(ordenPago[0].cleanup());
+                }
             }
-            res.send(ordenPago.map((orden) => {
-                return orden.cleanup();
-            })[0]);
-        }
+        });
     });
-});
+
+app.get(BASE_API_PATH + "/ordenesPago/idcomservicios/:idcomservicios",
+    (req, res) => {
+        // Get orden desde Proyecto
+        var name = req.params.idcomservicios;
+        console.log(Date() + " - GET /ordenesPago/idcomservicios/idcomservicios" + name);
+
+        OrdenPago.find({ "idcomservicios": name }, (err, ordenPago) => {
+            if (err) {
+                console.error("Error accesing DB");
+                res.sendStatus(500);
+            } else {
+                if (ordenPago.length == 0) {
+                    res.sendStatus(404);
+                } else {
+                    return res.send(ordenPago[0].cleanup());
+                }
+            }
+        });
+    });
+
+
 
 
 
@@ -129,35 +156,13 @@ app.post(BASE_API_PATH + "/ordenesPago", (req, res) => {
     });
 });
 
-app.put(BASE_API_PATH + "/ordenesPago", (req, res) => {
-    // Forbidden
-    console.log(Date() + " - PUT /ordenesPago");
-    res.sendStatus(405);
-});
 
-app.delete(BASE_API_PATH + "/ordenesPago", (req, res) => {
-    // Remove all ordenesPago
-    console.log(Date() + " - DELETE /ordenesPago");
-    db.remove({});
-    res.sendStatus(200);
-});
-
-
-app.post(BASE_API_PATH + "/ordenesPago/:name", (req, res) => {
-    // Forbidden
-    console.log(Date() + " - POST /ordenesPago");
-    res.sendStatus(405);
-});
-
-
-
-
-app.delete(BASE_API_PATH + "/ordenesPago/:name", (req, res) => {
+app.delete(BASE_API_PATH + "/ordenesPago/idcomservicio/:idcomservicio", (req, res) => {
     // Delete a single orden
-    var name = req.params.name;
-    console.log(Date() + " - DELETE /ordenesPago/" + name);
+    var name = req.params.idcomservicio;
+    console.log(Date() + " - DELETE /ordenesPago/idcomservicio" + name);
 
-    db.remove({ "name": name }, {}, (err, numRemoved) => {
+    OrdenPago.findOneAndDelete({ "idcomservicios": name }, {}, (err, numRemoved) => {
         if (err) {
             console.error("Error accesing DB");
             res.sendStatus(500);
@@ -168,16 +173,19 @@ app.delete(BASE_API_PATH + "/ordenesPago/:name", (req, res) => {
                 res.sendStatus(404);
             } else {
                 res.sendStatus(200);
+
             }
         }
     });
 });
-app.delete(BASE_API_PATH + "/ordenesPago/:name", (req, res) => {
-    // Delete a single orden
-    var name = req.params.name;
-    console.log(Date() + " - DELETE /ordenesPago/" + name);
 
-    db.remove({ "name": name }, {}, (err, numRemoved) => {
+
+app.delete(BASE_API_PATH + "/ordenesPago/idfactura/:idfactura", (req, res) => {
+    // Delete a single orden
+    var name = req.params.idfactura;
+    console.log(Date() + " - DELETE /ordenesPago/idfactura" + name);
+
+    OrdenPago.findOneAndDelete({ "idfactura": name }, {}, (err, numRemoved) => {
         if (err) {
             console.error("Error accesing DB");
             res.sendStatus(500);
@@ -188,23 +196,24 @@ app.delete(BASE_API_PATH + "/ordenesPago/:name", (req, res) => {
                 res.sendStatus(404);
             } else {
                 res.sendStatus(200);
+
             }
         }
     });
 });
 
-app.put(BASE_API_PATH + "/ordenesPago/:name", (req, res) => {
+app.put(BASE_API_PATH + "/ordenesPago/:idproyecto", (req, res) => {
     // Update orden
-    var name = req.params.name;
+    var name = req.params.idproyecto;
     var updatedOrdenPago = req.body;
     console.log(Date() + " - PUT /ordenesPago/" + name);
 
-    if (name != updatedOrdenPago.name) {
+    if (name != updatedOrdenPago.idproyecto) {
         res.sendStatus(409);
         return;
     }
 
-    db.update({ "name": name }, updatedOrdenPago, (err, numUpdated) => {
+    OrdenPago.update({ "idproyecto": name }, updatedOrdenPago, (err, numUpdated) => {
         if (err) {
             console.error("Error accesing DB");
             res.sendStatus(500);

@@ -5,6 +5,7 @@
 <td *ngIf="!editable">{{orden.cantidad}}</td>
 <td *ngIf="!editable">{{orden.beneficiario}}</td>
 <td *ngIf="!editable">{{orden.iban}}</td>
+<td *ngIf="!editable">{{orden.estado}}</td>
 <td *ngIf="editable"><input class="form-control" [(ngModel)]="orden.idproyecto"></td>
 <td *ngIf="editable"><input class="form-control" [(ngModel)]="orden.idfactura"></td>
 <td *ngIf="editable"><input class="form-control" [(ngModel)]="orden.idcomservicios"></td>
@@ -12,4 +13,6 @@
 <td *ngIf="editable"><input class="form-control" [(ngModel)]="orden.cantidad"></td>
 <td *ngIf="editable"><input class="form-control" [(ngModel)]="orden.beneficiario"></td>
 <td *ngIf="editable"><input class="form-control" [(ngModel)]="orden.iban"></td>
+<td *ngIf="editable"><input class="form-control" [(ngModel)]="orden.estado"></td>
 <td><button class="btn" (click)="onEdit()">{{editable ? 'Save': 'Edit'}}</button></td>
+<td><button class="btn-danger" (click)="onDelete()">Delete</button></td>

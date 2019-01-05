@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { OrdenPago } from '../orden';
+import { OrdenPagoService } from '../orden.service';
+
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -12,10 +14,18 @@ export class EditableOrdenPagoComponent implements OnInit {
   @Input() orden: OrdenPago;
   editable = false;
 
-  constructor() { }
+  constructor(private ordenService: OrdenPagoService) { }
 
 
   onEdit() {
+    this.editable = ! this.editable;
+    if (this.editable === true) {
+      this.ordenService.editOrdenPago(this.orden);
+    }
+
+  }
+
+  onDelete() {
     this.editable = ! this.editable;
   }
 
