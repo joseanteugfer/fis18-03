@@ -7,7 +7,7 @@ var expect = chai.expect;
 describe('OrdenPago DB connection', () => {
 
     before((done) => {
-        var dbUrl = (process.env.DB || 'mongodb://172.17.0.2/test' || 'mongodb://localhost/test');
+        var dbUrl = (process.env.DB || 'mongodb://localhost/test');
 
         mongoose.connect(dbUrl);
         var db = mongoose.connection;
