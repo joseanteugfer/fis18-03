@@ -40,14 +40,14 @@ private handleError<T> (operation = 'operation', result?: T) {
   };
 }
 
-  getOrdenesPago(): Observable<OrdenPago[]> {
-    const url = `${this.serverUrl}/ordenesPago`;
+  getOrdenesPago(key: string): Observable<OrdenPago[]> {
+    const url = `${this.serverUrl}/ordenesPago/?apikey=`+ key;
     return this.httpClient.get<OrdenPago[]>(url);
   }
 
   addOrdenPago(orden: OrdenPago): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const url = `${this.serverUrl}/ordenesPago`;
+    const url = `${this.serverUrl}/ordenesPago/`;
     return this.httpClient.post(url, orden, {responseType: 'text', headers: headers})
       .pipe(
           tap(() => this.log(`add orden id =${orden.idfactura}`)),

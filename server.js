@@ -39,7 +39,7 @@ app.get('/', function(req, res) {
 
 
 app.get(BASE_API_PATH + "/ordenesPago",
-    //passport.authenticate('localapikey', { session: false }),
+    passport.authenticate('localapikey', { session: false }),
     (req, res) => {
         console.log(Date() + " - GET /ordenesPago");
 

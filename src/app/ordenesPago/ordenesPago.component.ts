@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { OrdenPago } from '../orden';
 import { OrdenPagoService } from '../orden.service';
 
@@ -9,6 +9,8 @@ import { OrdenPagoService } from '../orden.service';
 })
 export class OrdenesPagoComponent implements OnInit {
 
+  key: string;
+  mostrarApiKey = true;
   ordenesPago: OrdenPago[];
   selectedOrdenPago: OrdenPago;
   newOrdenPago: OrdenPago = {
@@ -37,17 +39,26 @@ export class OrdenesPagoComponent implements OnInit {
         iban: null
       };
     });
+    this.getOrdenesPago();
   }
 
   getOrdenesPago() {
-    this.ordenService.getOrdenesPago()
+    this.ordenService.getOrdenesPago(this.key)
       .subscribe((ordenesPago) => {
         this.ordenesPago = ordenesPago;
       });
   }
 
+  validateKey() {
+    this.mostrarApiKey = !this.mostrarApiKey;
+    this.getOrdenesPago();
+  }
+
+  IntroduceApiKey() {
+    this.mostrarApiKey = !this.mostrarApiKey;
+  }
+
   ngOnInit() {
-    console.log('OnInit')
     this.getOrdenesPago();
   }
 
