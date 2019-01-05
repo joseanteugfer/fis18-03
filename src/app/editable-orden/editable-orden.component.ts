@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { OrdenPago } from '../orden';
 import { OrdenPagoService } from '../orden.service';
 
@@ -13,7 +13,7 @@ export class EditableOrdenPagoComponent implements OnInit {
 
   @Input('orden') orden: OrdenPago;
   @Input('key') key: string;
-  @Input('ordenesPago') ordenesPago: OrdenPago[];
+  @Output() actualizaOrdenes = new EventEmitter<string>();
 
  
 
@@ -36,10 +36,7 @@ export class EditableOrdenPagoComponent implements OnInit {
   onDelete() {
     this.ordenService.deleteOrdenPago(this.orden)
     .subscribe(() => {
-      this.ordenService.getOrdenesPago(this.key)
-        .subscribe((ordenesPago) => {
-          this.ordenesPago = ordenesPago;
-        });
+      this.actualizaOrdenes.emit('actualiza')
     });;
   }
 

@@ -61,6 +61,11 @@ export class OrdenesPagoComponent implements OnInit {
     this.mostrarApiKey = !this.mostrarApiKey;
   }
 
+  recibeActualizacionEditableOrden($event) {
+    if($event == 'actualiza')
+    this.getOrdenesPago();
+  }
+
   ngOnInit() {
   }
 
