@@ -40,14 +40,13 @@ private handleError<T> (operation = 'operation', result?: T) {
   };
 }
 
-  getOrdenesPago(): Observable<OrdenPago[]> {
-    const url = `${this.serverUrl}/ordenesPago`;
+  getOrdenesPago(key: string): Observable<OrdenPago[]> {
+    const url = `${this.serverUrl}/ordenesPago/?apikey=`+ key;
     return this.httpClient.get<OrdenPago[]>(url);
-  }
-
+}
 
   getOrdenesPagoProyecto(): Observable<OrdenPago> {
-    const url = `${this.serverUrl}/ordenPago/:idproyecto`;
+    const url = `${this.serverUrl}/ordenesPago/idproyecto/:idproyecto`;
     return this.httpClient.get<OrdenPago>(url);
   }
 
@@ -70,5 +69,16 @@ private handleError<T> (operation = 'operation', result?: T) {
           catchError(this.handleError('addOrdenPago', []))
       );
   }
+
+  deleteOrdenPago(orden: OrdenPago): Observable<any> {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    let idfactura = orden.idfactura;
+    const url = `${this.serverUrl}/ordenesPago/idfactura/`+idfactura;
+    return this.httpClient.delete(url, {responseType: 'text', headers: headers})
+    .pipe(
+        tap(() => this.log(`delete orden id =${orden.idfactura}`)),
+        catchError(this.handleError('deleteOrdenPago', []))
+    );
+}
 
 }
