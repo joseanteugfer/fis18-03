@@ -1,8 +1,23 @@
 <div *ngIf="selectedOrdenPago">
     {{selectedOrdenPago.concepto}}
 </div>
+<table style="width:50%">
+    <tr *ngIf="mostrarApiKey; else botonMostrarApiKey">
+            <td>ApiKey: </td>
+            <td><input type="text" class="form-control" [(ngModel)]="key"></td>
+            <td><button class="btn btn-primary" (click)="validateKey()">Validar</button> </td>
+    </tr>
+    <ng-template #botonMostrarApiKey>
+            <tr>
+                <td>
+                    <button class="btn btn-primary" (click)="IntroduceApiKey()">Introducir Api Key</button>
+                </td>
+            </tr>
+        </ng-template>
+</table>
 
 <table class="table">
+       
     <thead>
         <tr>
             <th>idProyecto</th>
