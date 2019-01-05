@@ -142,18 +142,20 @@ app.get(BASE_API_PATH + "/ordenesPago/idcomservicios/:idcomservicios",
 
 
 
-app.post(BASE_API_PATH + "/ordenesPago", (req, res) => {
-    // Create a new orden
-    console.log(Date() + " - POST /ordenesPago");
-    var orden = req.body;
-    OrdenPago.create(orden, (err) => {
-        if (err) {
-            console.error(err);
-            res.sendStatus(500);
-        } else {
-            res.sendStatus(201);
-        }
-    });
+app.post(BASE_API_PATH + "/ordenesPago",
+    passport.authenticate('localapikey', { session: false }),
+    (req, res) => {
+        // Create a new orden
+        console.log(Date() + " - POST /ordenesPago");
+        var orden = req.body;
+        OrdenPago.create(orden, (err) => {
+            if (err) {
+                console.error(err);
+                res.sendStatus(500);
+            } else {
+                res.sendStatus(201);
+            }
+        });
 });
 
 
@@ -180,53 +182,57 @@ app.delete(BASE_API_PATH + "/ordenesPago/idcomservicio/:idcomservicio", (req, re
 });
 
 
-app.delete(BASE_API_PATH + "/ordenesPago/idfactura/:idfactura", (req, res) => {
-    // Delete a single orden
-    var name = req.params.idfactura;
-    console.log(Date() + " - DELETE /ordenesPago/idfactura" + name);
+app.delete(BASE_API_PATH + "/ordenesPago/idfactura/:idfactura",
+    passport.authenticate('localapikey', { session: false }),
+    (req, res) => {
+        // Delete a single orden
+        var name = req.params.idfactura;
+        console.log(Date() + " - DELETE /ordenesPago/idfactura" + name);
 
-    OrdenPago.findOneAndDelete({ "idfactura": name }, {}, (err, numRemoved) => {
-        if (err) {
-            console.error("Error accesing DB");
-            res.sendStatus(500);
-        } else {
-            if (numRemoved > 1) {
-                console.warn("Incosistent DB: duplicated name");
-            } else if (numRemoved == 0) {
-                res.sendStatus(404);
+        OrdenPago.findOneAndDelete({ "idfactura": name }, {}, (err, numRemoved) => {
+            if (err) {
+                console.error("Error accesing DB");
+                res.sendStatus(500);
             } else {
-                res.sendStatus(200);
+                if (numRemoved > 1) {
+                    console.warn("Incosistent DB: duplicated name");
+                } else if (numRemoved == 0) {
+                    res.sendStatus(404);
+                } else {
+                    res.sendStatus(200);
 
+                }
             }
-        }
+        });
     });
-});
 
-app.put(BASE_API_PATH + "/ordenesPago/:idproyecto", (req, res) => {
-    // Update orden
-    var name = req.params.idproyecto;
-    var updatedOrdenPago = req.body;
-    console.log(Date() + " - PUT /ordenesPago/" + name);
+app.put(BASE_API_PATH + "/ordenesPago/idproyecto/:idproyecto", 
+    passport.authenticate('localapikey', { session: false }),
+    (req, res) => {
+        // Update orden
+        var name = req.params.idproyecto;
+        var updatedOrdenPago = req.body;
+        console.log(Date() + " - PUT /ordenesPago/idproyecto" + name);
 
-    if (name != updatedOrdenPago.idproyecto) {
-        res.sendStatus(409);
-        return;
-    }
+        if (name != updatedOrdenPago.idproyecto) {
+            res.sendStatus(409);
+            return;
+        }
 
-    OrdenPago.update({ "idproyecto": name }, updatedOrdenPago, (err, numUpdated) => {
-        if (err) {
-            console.error("Error accesing DB");
-            res.sendStatus(500);
-        } else {
-            if (numUpdated > 1) {
-                console.warn("Incosistent DB: duplicated name");
-            } else if (numUpdated == 0) {
-                res.sendStatus(404);
+        OrdenPago.update({ "idproyecto": name }, updatedOrdenPago, (err, numUpdated) => {
+            if (err) {
+                console.error("Error accesing DB");
+                res.sendStatus(500);
             } else {
-                res.sendStatus(200);
+                if (numUpdated > 1) {
+                    console.warn("Incosistent DB: duplicated name");
+                } else if (numUpdated == 0) {
+                    res.sendStatus(404);
+                } else {
+                    res.sendStatus(200);
+                }
             }
-        }
+        });
     });
-});
 
 module.exports.app = app;

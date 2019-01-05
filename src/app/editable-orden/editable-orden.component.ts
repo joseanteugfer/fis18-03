@@ -26,18 +26,21 @@ export class EditableOrdenPagoComponent implements OnInit {
 
 
   onEdit() {
-    this.editable = ! this.editable;
-    if (this.editable === true) {
-      this.ordenService.editOrdenPago(this.orden);
+    this.editable = !this.editable;
+    if (this.editable === false) {
+      this.ordenService.editOrdenPago(this.orden, this.key)
+      .subscribe(() => {
+        this.actualizaOrdenes.emit('actualiza');
+      });
     }
 
   }
 
   onDelete() {
-    this.ordenService.deleteOrdenPago(this.orden)
+    this.ordenService.deleteOrdenPago(this.orden, this.key)
     .subscribe(() => {
-      this.actualizaOrdenes.emit('actualiza')
-    });;
+      this.actualizaOrdenes.emit('actualiza');
+    });
   }
 
   ngOnInit() {

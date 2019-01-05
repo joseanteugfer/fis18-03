@@ -27,7 +27,7 @@ export class OrdenesPagoComponent implements OnInit {
   constructor(private ordenService: OrdenPagoService) { }
 
  addOrdenPago() {
-    this.ordenService.addOrdenPago(this.newOrdenPago)
+    this.ordenService.addOrdenPago(this.newOrdenPago, this.key)
     .subscribe(() => {
       this.ordenesPago.push(this.newOrdenPago);
       this.newOrdenPago = {

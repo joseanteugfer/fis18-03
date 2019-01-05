@@ -50,9 +50,9 @@ private handleError<T> (operation = 'operation', result?: T) {
     return this.httpClient.get<OrdenPago>(url);
   }
 
-  addOrdenPago(orden: OrdenPago): Observable<any> {
+  addOrdenPago(orden: OrdenPago, key: string): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const url = `${this.serverUrl}/ordenesPago`;
+    const url = `${this.serverUrl}/ordenesPago/?apikey=`+ key;
     return this.httpClient.post(url, orden, {responseType: 'text', headers: headers})
       .pipe(
           tap(() => this.log(`add orden id =${orden.idfactura}`)),
@@ -60,20 +60,21 @@ private handleError<T> (operation = 'operation', result?: T) {
       );
   }
 
-  editOrdenPago(orden: OrdenPago): Observable<any> {
+  editOrdenPago(orden: OrdenPago, key: string): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const url = `${this.serverUrl}/ordenesPago`;
+    let idproyecto = orden.idproyecto;
+    const url = `${this.serverUrl}/ordenesPago/idproyecto/`+idproyecto+`?apikey=`+ key;
     return this.httpClient.put(url, orden, {responseType: 'text', headers: headers})
       .pipe(
-          tap(() => this.log(`edit orden id =${orden.idfactura}`)),
-          catchError(this.handleError('addOrdenPago', []))
+          tap(() => this.log(`edit orden id =${orden.idproyecto}`)),
+          catchError(this.handleError('editOrdenPago', []))
       );
   }
 
-  deleteOrdenPago(orden: OrdenPago): Observable<any> {
+  deleteOrdenPago(orden: OrdenPago, key: string): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     let idfactura = orden.idfactura;
-    const url = `${this.serverUrl}/ordenesPago/idfactura/`+idfactura;
+    const url = `${this.serverUrl}/ordenesPago/idfactura/`+idfactura+`?apikey=`+key;
     return this.httpClient.delete(url, {responseType: 'text', headers: headers})
     .pipe(
         tap(() => this.log(`delete orden id =${orden.idfactura}`)),
