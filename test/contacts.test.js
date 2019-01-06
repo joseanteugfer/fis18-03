@@ -7,7 +7,7 @@ var expect = chai.expect;
 describe('OrdenPago DB connection', () => {
 
     before((done) => {
-        var dbUrl = (process.env.DB || 'mongodb://172.17.0.2/test' || 'mongodb://localhost/test');
+        var dbUrl = (process.env.DB || 'mongodb://localhost/test');
 
         mongoose.connect(dbUrl);
         var db = mongoose.connection;
@@ -24,7 +24,7 @@ describe('OrdenPago DB connection', () => {
     });
 
     it('writes a orden in the DB', (done) => {
-        var orden = new OrdenPago({ name: "pepe", phone: 888 });
+        var orden = new OrdenPago({"idproyecto": "001", "idfactura": "001", "idcomservicios": "001", "concepto": "viajes", "cantidad":123, "beneficiario": "Jose Juan", "iban": "653567461", "estado": "aceptado"});
         orden.save((err, orden) => {
             expect(err).is.null;
             OrdenPago.find({}, (err, ordenesPago) => {

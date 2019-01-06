@@ -12,7 +12,7 @@ describe('OrdenesPago API', () => {
 
     before(() => {
         var ApiKeyStub = sinon.stub(ApiKey, 'findOne');
-        ApiKeyStub.yields(null, new ApiKey({user: "test"}));    
+        ApiKeyStub.yields(null, new ApiKey({user: "cfedb422-7a15-4354-be01-342aef99125dt"}));    
     })
 
     it('hola mundo de prueba', (done) => {
@@ -30,6 +30,7 @@ describe('OrdenesPago API', () => {
         it('should return HTML', (done) => {
             chai.request(server.app)
                 .get('/')
+                .query({apikey: "cfedb422-7a15-4354-be01-342aef99125d"})
                 .end((err, res) => {
                     expect(res).to.have.status(200);
                     expect(res).to.be.html;
@@ -39,9 +40,9 @@ describe('OrdenesPago API', () => {
     });
 
     describe('GET /ordenesPago', () => {
-        var orden = new OrdenPago({"name": "pepe", "phone": 6666});
+        var orden = new OrdenPago({"idproyecto": "001", "idfactura": "001", "idcomservicios": "001", "concepto": "viajes", "cantidad":123, "beneficiario": "Jose Juan", "iban": "653567461", "estado": "aceptado"});
         var ordenMock = sinon.mock(orden);
-        ordenMock.expects('cleanup').returns({"name": "pepe", "phone": 6666});
+        ordenMock.expects('cleanup').returns({"idproyecto": "001", "idfactura": "001", "idcomservicios": "001", "concepto": "viajes", "cantidad":123, "beneficiario": "Jose Juan", "iban": "653567461", "estado": "aceptado"});
 
         var OrdenPagoStub = sinon.stub(OrdenPago, 'find');
         OrdenPagoStub.yields(null, [orden]);
@@ -49,7 +50,7 @@ describe('OrdenesPago API', () => {
         it('should return all ordenesPago', (done) => {
             chai.request(server.app)
                 .get('/api/v1/ordenesPago')
-                .query({apikey: "test"})
+                .query({apikey: "cfedb422-7a15-4354-be01-342aef99125d"})
                 .end((err, res) => {
                     expect(res).to.have.status(200);
                     expect(res.body).to.be.an('array');
@@ -62,12 +63,13 @@ describe('OrdenesPago API', () => {
 
     describe('POST /ordenesPago', () => {
         it('should create a new orden', (done) => {
-            var orden = {"name": "jaime", "phone":1111};
+            var orden = {"idproyecto": "001", "idfactura": "001", "idcomservicios": "001", "concepto": "viajes", "cantidad":123, "beneficiario": "Jose Juan", "iban": "653567461", "estado": "aceptado"};
             var dbMock = sinon.mock(OrdenPago);
             dbMock.expects('create').withArgs(orden).yields(null);
     
             chai.request(server.app)
                 .post('/api/v1/ordenesPago')
+                .query({apikey: "cfedb422-7a15-4354-be01-342aef99125d"})
                 .send(orden)
                 .end((err, res) => {
                     expect(res).to.have.status(201);
@@ -80,12 +82,13 @@ describe('OrdenesPago API', () => {
 
     describe('POST /ordenesPago', () => {
         it('should return 500 if fails', (done) => {
-            var orden = {"name": "jaime", "phone":1111};
+            var orden = {"idproyecto": "001", "idfactura": "001", "idcomservicios": "001", "concepto": "viajes", "cantidad":123, "beneficiario": "Jose Juan", "iban": "653567461", "estado": "aceptado"};
             var dbMock = sinon.mock(OrdenPago);
             dbMock.expects('create').withArgs(orden).yields(true);
     
             chai.request(server.app)
                 .post('/api/v1/ordenesPago')
+                .query({apikey: "cfedb422-7a15-4354-be01-342aef99125d"})
                 .send(orden)
                 .end((err, res) => {
                     expect(res).to.have.status(500);
