@@ -73,6 +73,19 @@ private handleError<T> (operation = 'operation', result?: T) {
       );
   }
 
+
+  changeStatusOrdenPago(orden: OrdenPago, key: string): Observable<any> {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    let idproyecto = orden.idproyecto;
+    const url = `${this.serverUrl}/changeOrdenesPago/idproyecto/`+idproyecto+`?apikey=`+ key;
+    return this.httpClient.put(url, orden, {responseType: 'text', headers: headers})
+      .pipe(
+          tap(() => this.log(`change status orden id =${orden.idproyecto}`)),
+          catchError(this.handleError('changeOrdenPago', []))
+      );
+  }
+
+
   deleteOrdenPago(orden: OrdenPago, key: string): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     let idfactura = orden.idfactura;

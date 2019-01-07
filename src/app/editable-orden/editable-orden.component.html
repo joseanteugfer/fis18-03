@@ -14,5 +14,6 @@
 <td *ngIf="editable"><input class="form-control" [(ngModel)]="orden.beneficiario"></td>
 <td *ngIf="editable"><input class="form-control" [(ngModel)]="orden.iban"></td>
 <td *ngIf="editable"><input class="form-control" [(ngModel)]="orden.estado"></td>
-<td><button class="btn" (click)="onEdit()">{{editable ? 'Save': 'Edit'}}</button></td>
+<td><button class="btn-primary" (click)="onEdit()">{{editable ? 'Save': 'Edit'}}</button></td>
 <td><button class="btn-danger" (click)="onDelete()">Delete</button></td>
+<td><button class="btn-primary" (click)="onChange()">Paid</button></td>

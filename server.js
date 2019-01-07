@@ -158,7 +158,7 @@ app.post(BASE_API_PATH + "/ordenesPago",
                 res.sendStatus(201);
             }
         });
-});
+    });
 
 
 app.delete(BASE_API_PATH + "/ordenesPago/idcomservicio/:idcomservicio", (req, res) => {
@@ -208,7 +208,7 @@ app.delete(BASE_API_PATH + "/ordenesPago/idfactura/:idfactura",
         });
     });
 
-app.put(BASE_API_PATH + "/ordenesPago/idproyecto/:idproyecto", 
+app.put(BASE_API_PATH + "/ordenesPago/idproyecto/:idproyecto",
     passport.authenticate('localapikey', { session: false }),
     (req, res) => {
         // Update orden
@@ -236,5 +236,37 @@ app.put(BASE_API_PATH + "/ordenesPago/idproyecto/:idproyecto",
             }
         });
     });
+
+
+
+app.put(BASE_API_PATH + "/changeOrdenesPago/idproyecto/:idproyecto",
+    passport.authenticate('localapikey', { session: false }),
+    (req, res) => {
+        // Update orden
+        var name = req.params.idproyecto;
+        var updatedOrdenPago = req.body;
+        console.log(Date() + " - PUT /ordenesPago/idproyecto" + name);
+
+        if (name != updatedOrdenPago.idproyecto) {
+            res.sendStatus(409);
+            return;
+        }
+
+        OrdenPago.update({ "idproyecto": name }, updatedOrdenPago, (err, numUpdated) => {
+            if (err) {
+                console.error("Error accesing DB");
+                res.sendStatus(500);
+            } else {
+                if (numUpdated > 1) {
+                    console.warn("Incosistent DB: duplicated name");
+                } else if (numUpdated == 0) {
+                    res.sendStatus(404);
+                } else {
+                    res.sendStatus(200);
+                }
+            }
+        });
+    });
+
 
 module.exports.app = app;
