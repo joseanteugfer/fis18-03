@@ -1,14 +1,41 @@
 var mongoose = require('mongoose');
 
 var ordenSchema = new mongoose.Schema({
-    idproyecto: String,
-    idfactura: String,
-    idcomservicios: String,
-    concepto: String,
-    cantidad: Number,
-    beneficiario: String,
-    iban: String,
-    estado: String
+    //Seguridad para no crear ordenes de pago con campos nulo
+    idproyecto: {
+        type: String,
+        required: 'El idproyecto no puede estar vacio',
+        unique:true
+    },
+    idfactura: {
+        type: String,
+        required: 'El idfactura no puede estar vacio',
+        unique:true
+    },
+    idcomservicios: {
+        type: String,
+        required: 'El idcomservicios no puede estar vacio',
+        unique:true
+    },
+    concepto: {
+        type: String,
+        required: 'El concepto no puede estar vacio',
+        unique:true
+    },
+    cantidad: {
+        type: Number,
+        required: 'La cantidad no puede estar vacia'
+    },
+    beneficiario: {
+        type: String,
+        required: 'El beneficiario no puede estar vacio'
+    },
+    iban: {
+        type: String,
+        required: 'El iban no puede estar vacio',
+        unique:true
+    },
+    estado: {String}
 });
 
 ordenSchema.methods.cleanup = function() {

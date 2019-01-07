@@ -44,6 +44,20 @@ export class EditableOrdenPagoComponent implements OnInit {
     });
   }
 
+  onChange() {
+
+    if (this.orden.cantidad > 100 || this.orden.iban.length !== 20 || this.orden.cantidad < 0 ) {
+      this.orden.estado = 'RECHAZADO';
+    } else {
+      this.orden.estado = 'EJECUTADA';
+    }
+    this.ordenService.changeStatusOrdenPago(this.orden, this.key)
+    .subscribe(() => {
+      this.actualizaOrdenes.emit('actualiza');
+    });
+  }
+
+
   ngOnInit() {
   }
 
