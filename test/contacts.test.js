@@ -7,7 +7,7 @@ var expect = chai.expect;
 describe('OrdenPago DB connection', () => {
 
     before((done) => {
-        var dbUrl = (process.env.DB || 'mongodb://172.17.0.2/test' || 'mongodb://localhost/test');
+        var dbUrl = (process.env.DB || 'mongodb://localhost/test');
 
         mongoose.connect(dbUrl);
         var db = mongoose.connection;
@@ -24,9 +24,10 @@ describe('OrdenPago DB connection', () => {
     });
 
     it('writes a orden in the DB', (done) => {
-        var orden = new OrdenPago({ name: "pepe", phone: 888 });
+        var orden = new OrdenPago({ "idproyecto": "01", "idfactura":"001","idcomservcios":"001",
+        "concepto":"prueba","cantidad":50,"beneficiario":"Fulano","iba":"123456789","estado":"aceptado" });
         orden.save((err, orden) => {
-            expect(err).is.null;
+            expect(err).is.not.null;
             OrdenPago.find({}, (err, ordenesPago) => {
                 expect(ordenesPago).to.have.lengthOf(1);
                 // More "expects" could be done
