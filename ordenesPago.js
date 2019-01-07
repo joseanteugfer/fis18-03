@@ -5,22 +5,22 @@ var ordenSchema = new mongoose.Schema({
     idproyecto: {
         type: String,
         required: 'El idproyecto no puede estar vacio',
-        unique:true
+        unique: true
     },
     idfactura: {
         type: String,
         required: 'El idfactura no puede estar vacio',
-        unique:true
+        unique: true
     },
     idcomservicios: {
         type: String,
         required: 'El idcomservicios no puede estar vacio',
-        unique:true
+        unique: true
     },
     concepto: {
         type: String,
         required: 'El concepto no puede estar vacio',
-        unique:true
+        unique: true
     },
     cantidad: {
         type: Number,
@@ -33,9 +33,12 @@ var ordenSchema = new mongoose.Schema({
     iban: {
         type: String,
         required: 'El iban no puede estar vacio',
-        unique:true
+        unique: true
     },
-    estado: {String}
+    estado: {
+        type: String,
+        required: 'El iban no puede estar vacio'
+    }
 });
 
 ordenSchema.methods.cleanup = function() {
