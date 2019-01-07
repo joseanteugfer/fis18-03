@@ -13,7 +13,7 @@ describe('OrdenesPago API', () => {
 
     before(() => {
         var ApiKeyStub = sinon.stub(ApiKey, 'findOne');
-        ApiKeyStub.yields(null, new ApiKey({user: "test"}));    
+        ApiKeyStub.yields(null, new ApiKey({user: "cfedb422-7a15-4354-be01-342aef99125d"}));    
     })
 
     //Prueba de GET a la Raiz
@@ -21,6 +21,7 @@ describe('OrdenesPago API', () => {
         it('should return HTML', (done) => {
             chai.request(server.app)
                 .get('/')
+                .query({apikey: "cfedb422-7a15-4354-be01-342aef99125d"})
                 .end((err, res) => {
                     expect(res).to.have.status(200);
                     expect(res).to.be.html;
@@ -43,7 +44,7 @@ describe('OrdenesPago API', () => {
         it('should return all ordenesPago', (done) => {
             chai.request(server.app)
                 .get('/api/v1/ordenesPago')
-                .query({apikey: "test"})
+                .query({apikey: "cfedb422-7a15-4354-be01-342aef99125d"})
                 .end((err, res) => {
                     expect(res).to.have.status(200);
                     expect(res.body).to.be.an('array');
@@ -64,7 +65,7 @@ describe('OrdenesPago API', () => {
             chai.request(server.app)
                 .post('/api/v1/ordenesPago')
                 .set('content-type', 'application/json')
-                .query({apikey: "test"})
+                .query({apikey: "cfedb422-7a15-4354-be01-342aef99125d"})
                 .send(orden)
                 .end((err, res) => {
                     expect(res).to.have.status(201);
@@ -85,6 +86,7 @@ describe('OrdenesPago API', () => {
     
             chai.request(server.app)
                 .post('/api/v1/ordenesPago')
+                .query({apikey: "cfedb422-7a15-4354-be01-342aef99125d"})
                 .send(orden)
                 .query({apikey: "test"})
                 .end((err, res) => {

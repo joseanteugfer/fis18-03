@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var ordenSchema = new mongoose.Schema({
-    //Seguridad para no crear ordenes de pago con campos nulos
+    //Seguridad para no crear ordenes de pago con campos nulo
     idproyecto: {
         type: String,
         required: 'El idproyecto no puede estar vacio',
