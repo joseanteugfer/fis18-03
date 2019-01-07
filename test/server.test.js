@@ -87,8 +87,7 @@ describe('OrdenesPago API', () => {
             chai.request(server.app)
                 .post('/api/v1/ordenesPago')
                 .query({apikey: "cfedb422-7a15-4354-be01-342aef99125d"})
-                .send(orden)
-                .query({apikey: "test"})
+                .send(orden)                
                 .end((err, res) => {
                     expect(res).to.have.status(500);
                     dbMock.verify();
