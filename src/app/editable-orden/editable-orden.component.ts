@@ -20,7 +20,8 @@ export class EditableOrdenPagoComponent implements OnInit {
 
 
   editable = false;
-
+  invoiceAmount: Number;
+  invoice: any;
 
   constructor(private ordenService: OrdenPagoService) { }
 
@@ -46,7 +47,19 @@ export class EditableOrdenPagoComponent implements OnInit {
 
   onChange() {
 
-    if (this.orden.cantidad > 100 || this.orden.iban.length !== 20 || this.orden.cantidad < 0 ) {
+    // tslint:disable-next-line:max-line-length
+    this.ordenService.getInvoice(this.orden.idfactura).subscribe(
+      (data) => { // Success
+        this.invoice = data;
+        this.invoiceAmount = this.invoice[1].amount;
+        console.log(this.invoice[1].amount);
+        console.log(this.invoice);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+    if (this.orden.cantidad > this.invoiceAmount || this.orden.iban.length !== 20 || this.orden.cantidad < 0 ) {
       this.orden.estado = 'RECHAZADO';
     } else {
       this.orden.estado = 'EJECUTADA';

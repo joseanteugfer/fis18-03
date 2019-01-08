@@ -13,6 +13,7 @@ import { Http,Headers,RequestOptions,URLSearchParams } from '@angular/http';
 export class OrdenPagoService {
 
   serverUrl = '/api/v1';
+  invoiceUrl = 'http://fis2018-04.herokuapp.com/api/v1/';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -98,8 +99,11 @@ private handleError<T> (operation = 'operation', result?: T) {
     );
   }
 
-  getProjects() {
-    return this.httpClient.get('http://fis2018-02.herokuapp.com/api/v1/proyects/?apikey=11165da8-c45d-4cb3-95c4-6fa13939f7a5');
+
+  getInvoice(idinvoice: String): Observable<any> {
+    let headers = new HttpHeaders({ 'apikey': '04c76028-84e9-4b54-83a4-740dde6d1da3' });
+    const url = this.invoiceUrl + 'invoices/' + idinvoice;
+    return this.httpClient.get<any>(url, {headers: headers});
   }
 
 }
