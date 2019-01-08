@@ -4,6 +4,7 @@ import { ORDENES } from './mock-ordenesPago';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { Http,Headers,RequestOptions,URLSearchParams } from '@angular/http';
 
 
 @Injectable({
@@ -95,6 +96,10 @@ private handleError<T> (operation = 'operation', result?: T) {
         tap(() => this.log(`delete orden id =${orden.idfactura}`)),
         catchError(this.handleError('deleteOrdenPago', []))
     );
-}
+  }
+
+  getProjects() {
+    return this.httpClient.get('http://fis2018-02.herokuapp.com/api/v1/proyects/?apikey=11165da8-c45d-4cb3-95c4-6fa13939f7a5');
+  }
 
 }
