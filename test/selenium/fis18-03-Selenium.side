@@ -1,0 +1,341 @@
+{
+  "id": "d614349b-d23a-4c01-bfad-bde8cb980dc0",
+  "version": "1.1",
+  "name": "fis18-03",
+  "url": "http://fis2018-03.herokuapp.com",
+  "tests": [{
+    "id": "95aad958-de23-4f00-9da3-284484cd4a24",
+    "name": "Test01 - Introducir una API key no válida",
+    "commands": [{
+      "id": "ae890974-41ca-496c-aeca-e2db9c7d21f4",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d6f4f84e-a252-40ba-a776-dc641889abd7",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//input[@type='text']",
+      "targets": [
+        ["css=td:nth-child(2) > .ng-valid", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4ffb36ab-780a-4a50-aa4c-cf69ee22f1e8",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//input[@type='text']",
+      "targets": [
+        ["css=.ng-dirty", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "1234"
+    }, {
+      "id": "560d4455-9b3b-41f3-8bb2-146d215f371e",
+      "comment": "",
+      "command": "pause",
+      "target": "",
+      "targets": [],
+      "value": "3000"
+    }, {
+      "id": "a4d6d72e-da43-446a-ac29-d73d909896fb",
+      "comment": "",
+      "command": "click",
+      "target": "css=button.btn.btn-primary",
+      "targets": [
+        ["css=button.btn.btn-primary", "css"],
+        ["css=td:nth-child(3) > .btn", "css:finder"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "8fd6e4f9-332e-4734-83c9-406649be52a0",
+    "name": "Test02 - Introducir una API key válida",
+    "commands": [{
+      "id": "bc983786-96c8-437b-9f79-a07a10153194",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5280cf87-607f-4f17-9fdb-7858cb237f2b",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//input[@type='text']",
+      "targets": [
+        ["css=.ng-dirty", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e02df656-128c-4712-93a0-a23c820995fd",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//input[@type='text']",
+      "targets": [
+        ["css=.ng-dirty", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "cfedb422-7a15-4354-be01-342aef99125d"
+    }, {
+      "id": "87c9278c-e369-46f3-8b19-d3d845d08900",
+      "comment": "",
+      "command": "pause",
+      "target": "",
+      "targets": [],
+      "value": "3000"
+    }, {
+      "id": "6a7e8c5c-06ef-4938-a32d-b3d970465efb",
+      "comment": "",
+      "command": "click",
+      "target": "css=button.btn.btn-primary",
+      "targets": [
+        ["css=button.btn.btn-primary", "css"],
+        ["css=td:nth-child(3) > .btn", "css:finder"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "0eaff6a7-be8e-4d5f-8a4c-70c5900522d4",
+    "name": "Test03 - Introducir datos",
+    "commands": [{
+      "id": "22e48f77-4e7e-4a0d-8dd4-b742d22c8fd4",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6da71c03-ba2d-4a68-9507-19906f0228d9",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(2) > .ng-valid",
+      "targets": [
+        ["css=td:nth-child(2) > .ng-valid", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "913083c0-3ec6-4141-a621-fc6b0e335715",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//input[@type='text']",
+      "targets": [
+        ["css=.ng-dirty", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "cfedb422-7a15-4354-be01-342aef99125d"
+    }, {
+      "id": "9015bc73-de59-4d76-ba25-44c14c6bcb3b",
+      "comment": "",
+      "command": "click",
+      "target": "css=button.btn.btn-primary",
+      "targets": [
+        ["css=button.btn.btn-primary", "css"],
+        ["css=td:nth-child(3) > .btn", "css:finder"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "80995a41-f952-4173-8503-5cb8d7bd221c",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(1) > .form-control",
+      "targets": [
+        ["css=td:nth-child(1) > .form-control", "css:finder"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d3871908-bc6a-4117-9601-4ff494eba941",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//input",
+      "targets": [
+        ["css=.ng-dirty", "css:finder"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "001"
+    }, {
+      "id": "ff20cb34-76dd-4d40-b646-e9c78400a71a",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(2) > .form-control",
+      "targets": [
+        ["css=td:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bbb4ebcb-c76d-4ca4-8292-96e8cbc03fb9",
+      "comment": "",
+      "command": "type",
+      "target": "css=td:nth-child(2) > .form-control",
+      "targets": [
+        ["css=td:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": "003"
+    }, {
+      "id": "1306d631-adde-4795-a9a7-b2c29066f8c7",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(3) > .form-control",
+      "targets": [
+        ["css=td:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//td[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3f81152e-b521-4812-aa3a-2042361d77c3",
+      "comment": "",
+      "command": "type",
+      "target": "css=td:nth-child(3) > .form-control",
+      "targets": [
+        ["css=td:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//td[3]/input", "xpath:position"]
+      ],
+      "value": "010"
+    }, {
+      "id": "81dc9237-6375-4c85-b5af-f054b7eaf2df",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(4) > .form-control",
+      "targets": [
+        ["css=td:nth-child(4) > .form-control", "css:finder"],
+        ["xpath=//td[4]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c6661197-b2d7-4f52-a69d-51bf42224393",
+      "comment": "",
+      "command": "type",
+      "target": "css=td:nth-child(4) > .form-control",
+      "targets": [
+        ["css=td:nth-child(4) > .form-control", "css:finder"],
+        ["xpath=//td[4]/input", "xpath:position"]
+      ],
+      "value": "viajes"
+    }, {
+      "id": "4740e2c8-7f4a-47de-a0e6-f6e96adf803b",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(5) > .form-control",
+      "targets": [
+        ["css=td:nth-child(5) > .form-control", "css:finder"],
+        ["xpath=//input[@type='number']", "xpath:attributes"],
+        ["xpath=//td[5]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "12328e50-b614-46c5-8e3a-025f145987e9",
+      "comment": "",
+      "command": "type",
+      "target": "css=td:nth-child(5) > .form-control",
+      "targets": [
+        ["css=td:nth-child(5) > .form-control", "css:finder"],
+        ["xpath=//input[@type='number']", "xpath:attributes"],
+        ["xpath=//td[5]/input", "xpath:position"]
+      ],
+      "value": "90"
+    }, {
+      "id": "957f8592-b944-46e5-b7b3-4890efe9c512",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(6) > .form-control",
+      "targets": [
+        ["css=td:nth-child(6) > .form-control", "css:finder"],
+        ["xpath=//td[6]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "621a7a38-c6c8-4d95-9717-8064730b12c8",
+      "comment": "",
+      "command": "type",
+      "target": "css=td:nth-child(6) > .form-control",
+      "targets": [
+        ["css=td:nth-child(6) > .form-control", "css:finder"],
+        ["xpath=//td[6]/input", "xpath:position"]
+      ],
+      "value": "Juan"
+    }, {
+      "id": "db73a5e2-f22b-4bb1-9b61-75eb9cd56e4c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.ng-invalid",
+      "targets": [
+        ["css=.ng-invalid", "css:finder"],
+        ["xpath=(//input[@type='number'])[2]", "xpath:attributes"],
+        ["xpath=//td[7]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0c4d356c-4052-4a34-b562-0abb2e044c0a",
+      "comment": "",
+      "command": "type",
+      "target": "css=td:nth-child(7) > .form-control",
+      "targets": [
+        ["css=td:nth-child(7) > .form-control", "css:finder"],
+        ["xpath=(//input[@type='number'])[2]", "xpath:attributes"],
+        ["xpath=//td[7]/input", "xpath:position"]
+      ],
+      "value": "89567456437654563487"
+    }, {
+      "id": "1cc979e6-59bb-45e3-8b3c-f45dc0fc9965",
+      "comment": "",
+      "command": "pause",
+      "target": "",
+      "targets": [],
+      "value": "4000"
+    }, {
+      "id": "6386fb2a-34cd-4a04-a626-6383dcfe88b3",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(9) > .btn",
+      "targets": [
+        ["css=td:nth-child(9) > .btn", "css:finder"],
+        ["xpath=//td[9]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "421f1eda-61fb-4cf3-b7a6-c38b9e6acbd1",
+      "comment": "",
+      "command": "pause",
+      "target": "",
+      "targets": [],
+      "value": "12000"
+    }, {
+      "id": "584a68b2-554d-4113-8641-e7d704f3e222",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(10) > td:nth-child(11) > .btn-primary",
+      "targets": [
+        ["css=tr:nth-child(10) > td:nth-child(11) > .btn-primary", "css:finder"],
+        ["xpath=//tr[10]/td[11]/button", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "6388268b-6510-474d-80e2-37f861558ad1",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["95aad958-de23-4f00-9da3-284484cd4a24"]
+  }],
+  "urls": ["http://fis2018-03.herokuapp.com/"],
+  "plugins": []
+}
