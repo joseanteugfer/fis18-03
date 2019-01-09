@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { OrdenPago } from './orden';
+import { Invoice } from './invoice';
 import { ORDENES } from './mock-ordenesPago';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
@@ -102,7 +103,7 @@ private handleError<T> (operation = 'operation', result?: T) {
   getInvoice(idinvoice: String): Observable<any> {
     let headers = new HttpHeaders({ 'apikey': '04c76028-84e9-4b54-83a4-740dde6d1da3' });
     const url = this.invoiceUrl + 'invoices/' + idinvoice;
-    return this.httpClient.get<any>(url, {headers: headers});
+    return this.httpClient.get<Invoice>(url, {headers: headers});
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { OrdenPago } from '../orden';
+import { Invoice } from '../invoice';
 import { OrdenPagoService } from '../orden.service';
 
 
@@ -21,7 +22,8 @@ export class EditableOrdenPagoComponent implements OnInit {
 
   editable = false;
   invoiceAmount: Number;
-  invoice: any;
+  cantidad: Number;
+  invoice: Invoice;
 
   constructor(private ordenService: OrdenPagoService) { }
 
@@ -45,21 +47,25 @@ export class EditableOrdenPagoComponent implements OnInit {
     });
   }
 
-  onChange() {
+onChange() {
 
     // tslint:disable-next-line:max-line-length
     this.ordenService.getInvoice(this.orden.idfactura).subscribe(
       (data) => { // Success
         this.invoice = data;
-        this.invoiceAmount = this.invoice[1].amount;
-        console.log(this.invoice[1].amount);
+        this.invoiceAmount = this.invoice.amount;
+        console.log('cantidad Invoice ' + this.invoice.amount);
+        console.log('cantidad orden de pago ' + this.orden.cantidad);
         console.log(this.invoice);
+       
       },
       (error) => {
         console.error(error);
       }
     );
-    if (this.orden.cantidad > this.invoiceAmount || this.orden.iban.length !== 20 || this.orden.cantidad < 0 ) {
+    this.cantidad = this.orden.cantidad;
+    if (this.cantidad > this.invoiceAmount || this.orden.iban.length !== 20 || this.orden.cantidad < 0 ) {
+      console.log('he entrado en rechazado');
       this.orden.estado = 'RECHAZADO';
     } else {
       this.orden.estado = 'EJECUTADA';
