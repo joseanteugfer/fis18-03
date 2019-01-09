@@ -28,16 +28,6 @@ export class OrdenesPagoComponent implements OnInit {
   constructor(private ordenService: OrdenPagoService) { }
 
  addOrdenPago() {
-    this.ordenService.getInvoice(this.newOrdenPago.idproyecto).subscribe((data: any[]) => { // Success
-          this.projects = data;
-        console.log(this.projects);
-        },
-        (error) => {
-          console.error(error);
-        }
-    );
-
-    if (this.projects.includes(this.newOrdenPago.idproyecto) || this.newOrdenPago.idproyecto.includes('123')) {
       this.ordenService.addOrdenPago(this.newOrdenPago, this.key)
       .subscribe(() => {
         this.ordenesPago.push(this.newOrdenPago);
@@ -52,10 +42,6 @@ export class OrdenesPagoComponent implements OnInit {
           estado: 'ACEPTADO'
         };
       });
-    } else {
-      console.log('El id de proyecto no existe');
-    }
-
     this.getOrdenesPago();
   }
 
