@@ -28,7 +28,7 @@ export class OrdenesPagoComponent implements OnInit {
   constructor(private ordenService: OrdenPagoService) { }
 
  addOrdenPago() {
-    this.ordenService.getProjects().subscribe((data: any[]) => { // Success
+    this.ordenService.getInvoice(this.newOrdenPago.idproyecto).subscribe((data: any[]) => { // Success
           this.projects = data;
         console.log(this.projects);
         },
