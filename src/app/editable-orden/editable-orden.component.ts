@@ -21,7 +21,7 @@ export class EditableOrdenPagoComponent implements OnInit {
 
 
   editable = false;
-  invoiceAmount: Number;
+  //invoiceAmount: Number;
   invoice: Invoice;
 
   constructor(private ordenService: OrdenPagoService) { }
@@ -50,7 +50,7 @@ async onChange() {
 
     // tslint:disable-next-line:max-line-length
         this.invoice = await this.ordenService.getInvoice(this.orden.idfactura).toPromise();
-        this.invoiceAmount = this.invoice.amount;
+        //this.invoiceAmount = this.invoice.amount;
         console.log('cantidad Invoice ' + this.invoice.amount);
         console.log('cantidad orden de pago ' + this.orden.cantidad);
         console.log(this.invoice);
