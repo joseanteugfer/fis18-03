@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { OrdenPago } from '../orden';
+import { Invoice } from '../invoice';
 import { OrdenPagoService } from '../orden.service';
 
 
@@ -20,7 +21,8 @@ export class EditableOrdenPagoComponent implements OnInit {
 
 
   editable = false;
-
+  invoiceAmount: Number;
+  invoice: Invoice;
 
   constructor(private ordenService: OrdenPagoService) { }
 
@@ -44,9 +46,18 @@ export class EditableOrdenPagoComponent implements OnInit {
     });
   }
 
-  onChange() {
+async onChange() {
 
-    if (this.orden.cantidad > 100 || this.orden.iban.length !== 20 || this.orden.cantidad < 0 ) {
+    // tslint:disable-next-line:max-line-length
+        this.invoice = await this.ordenService.getInvoice(this.orden.idfactura).toPromise();
+        this.invoiceAmount = this.invoice.amount;
+        console.log('cantidad Invoice ' + this.invoice.amount);
+        console.log('cantidad orden de pago ' + this.orden.cantidad);
+        console.log(this.invoice);
+       
+      
+     
+    if (this.orden.cantidad > this.invoice.amount || this.orden.iban.length !== 20 || this.orden.cantidad < 0 ) {
       this.orden.estado = 'RECHAZADO';
     } else {
       this.orden.estado = 'EJECUTADA';

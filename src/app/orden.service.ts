@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { OrdenPago } from './orden';
+import { Invoice } from './invoice';
 import { ORDENES } from './mock-ordenesPago';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
@@ -12,6 +13,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class OrdenPagoService {
 
   serverUrl = '/api/v1';
+  invoiceUrl = 'http://fis2018-04.herokuapp.com/api/v1/';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -95,6 +97,13 @@ private handleError<T> (operation = 'operation', result?: T) {
         tap(() => this.log(`delete orden id =${orden.idfactura}`)),
         catchError(this.handleError('deleteOrdenPago', []))
     );
-}
+  }
+
+
+  getInvoice(idinvoice: String): Observable<any> {
+    let headers = new HttpHeaders({ 'apikey': '04c76028-84e9-4b54-83a4-740dde6d1da3' });
+    const url = this.invoiceUrl + 'invoices/' + idinvoice;
+    return this.httpClient.get<Invoice>(url, {headers: headers});
+  }
 
 }
