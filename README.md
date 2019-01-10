@@ -6,7 +6,7 @@
 
 ## Aspectos de nivel avanzado
 
-Pruebas de interfaz de usuario con selenium: Ejecuta las pruebas de manera manual pasandole una serie de valores, adjuntamos una serie de videos donde se observa el funcionamiento. El código podemos encontrar en test>selenium
+Pruebas de interfaz de usuario con selenium: Ejecuta las pruebas de manera automática programando los pasos a ejecutar sobre la interfaz de usuario, adjuntamos tres videos con tres casos de prueba donde se observa el funcionamiento dentro de la carpeta Información. El código del proyecto de Selenium lo podemos encontrar en test>selenium
 
 Integración con el microservicio de facturas: Nos integramos para comprobar si una orden de pago puede ser ejecutada o no, comprobamos si la orden tiene una cantidad valida para la factura. Metodo onChange de editable-orden.component.ts
 
